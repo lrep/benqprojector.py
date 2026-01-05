@@ -77,6 +77,8 @@ The following projectors are known to work:
 * MS521P
 * MW519
 * TH585
+* TH681
+* TH685
 * TK800m
 * W1070
 * W1100

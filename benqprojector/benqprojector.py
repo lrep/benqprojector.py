@@ -146,6 +146,7 @@ class BenQProjector(ABC):
         self,
         connection: BenQConnection,
         model_hint: str = None,
+        max_retry_attempts: int = 2,
     ):
         """
         Initialises the BenQProjector object.
@@ -154,6 +155,7 @@ class BenQProjector(ABC):
 
         self.connection = connection
         self.model = model_hint
+        self.max_retry_attempts = max_retry_attempts
 
         self._interactive = False
         if sys.stdin and sys.stdin.isatty() and logging.root.level == logging.INFO:
@@ -514,11 +516,23 @@ class BenQProjector(ABC):
             raise BenQTooBusyError(command) from ex
 
         try:
-            await self._send_raw_command(command.raw_command)
+            for attempt in range(self.max_retry_attempts):
+                await self._send_raw_command(command.raw_command)
 
-            raw_response = await self._read_raw_response(command)
+                raw_response = await self._read_raw_response(command)
 
-            return self._parse_response(command, raw_response, lowercase_response)
+                try:
+                    return self._parse_response(command, raw_response, lowercase_response)
+                except BenQProjectorError as ex:
+                    if attempt + 1 < self.max_retry_attempts:
+                        logger.warning(
+                            "parse_response failed for command %s, retrying (attempt %d/%d): %s",
+                            command, attempt + 1, self.max_retry_attempts, ex
+                        )
+                        await asyncio.sleep(0.1)
+                        continue
+                    ex.command = command
+                    raise
         except BenQProjectorError as ex:
             ex.command = command
             raise

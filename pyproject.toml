@@ -31,8 +31,8 @@ classifiers = [
 ]
 dependencies = [
     "pyserial>=3.5",
-    "pyserial-asyncio-fast>=0.14",
-    "aiofiles>=24.1.0",
+    "pyserial-asyncio-fast>=0.16",
+    "aiofiles>=25.1.0",
 ]
 
 [project.urls]

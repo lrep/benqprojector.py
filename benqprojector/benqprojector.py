@@ -16,6 +16,7 @@ import sys
 import time
 from abc import ABC
 from datetime import datetime
+from json.decoder import JSONDecodeError
 from typing import Any
 
 from .benqclasses import (
@@ -39,7 +40,6 @@ from .benqconnection import (
     BenQTelnetConnection,
 )
 from .task_helper import save_task_reference
-from json.decoder import JSONDecodeError
 
 logger = logging.getLogger(__name__)
 
@@ -181,12 +181,12 @@ class BenQProjector(ABC):
         text = await asyncio.get_running_loop().run_in_executor(
             None, importlib.resources.read_text, "benqprojector.configs", model_filename
         )
-        
+
         try:
             if text is not None and len(text) > 0:
                 return json.load(text)
-            else:
-                logger.debug("No or empty read config file %s", model_filename)
+
+            logger.debug("No or empty read config file %s", model_filename)
         except JSONDecodeError:
             logger.error("Invalid config file %s", model_filename)
 

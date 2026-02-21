@@ -252,15 +252,16 @@ class BenQSerialConnection(BenQConnection):
 
         try:
             if not self.is_open():
-                self._reader, self._writer = (
-                    await serial_asyncio.open_serial_connection(
-                        url=self._serial_port,
-                        baudrate=self._baud_rate,
-                        bytesize=serial.EIGHTBITS,
-                        parity=serial.PARITY_NONE,
-                        stopbits=serial.STOPBITS_ONE,
-                        timeout=_SERIAL_TIMEOUT,
-                    )
+                (
+                    self._reader,
+                    self._writer,
+                ) = await serial_asyncio.open_serial_connection(
+                    url=self._serial_port,
+                    baudrate=self._baud_rate,
+                    bytesize=serial.EIGHTBITS,
+                    parity=serial.PARITY_NONE,
+                    stopbits=serial.STOPBITS_ONE,
+                    timeout=_SERIAL_TIMEOUT,
                 )
 
             return True

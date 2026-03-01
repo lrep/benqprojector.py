@@ -1,0 +1,29 @@
+{
+	"commands": [
+		"mute",
+		"pow",
+		"sour",
+		"sourmenu",
+		"vol"
+	],
+	"video_sources": [
+		"hdmi",
+		"hdmi2"
+	],
+	"projector_positions": [
+		"ft",
+		"re",
+		"rc",
+		"fc"
+	],
+	"menu_positions": [
+		"cen",
+		"center",
+		"tl",
+		"tr",
+		"br",
+		"bl"
+	],
+	"poweron_time": 100,
+	"poweroff_time": 100
+}

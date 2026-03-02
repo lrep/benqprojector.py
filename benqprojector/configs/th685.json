@@ -1,8 +1,13 @@
 {
 	"commands": [
-		"pow"
+		"pow",
+		"sour"
 	],
-	"video_sources": [],
+	"video_sources": [
+		"hdmi",
+		"hdmi2",
+		"sdi"
+	],
 	"audio_sources": [],
 	"picture_modes": [],
 	"color_temperatures": [],

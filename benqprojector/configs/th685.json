@@ -8,7 +8,8 @@
 		"blank",
 		"lammd",
 		"lampcustom",
-		"lampm"
+		"lampm",
+		"ltim"
 	],
 	"video_sources": [
 		"hdmi",
@@ -26,7 +27,9 @@
 		"fc"
 	],
 	"menu_positions": [],
-	"lamp_modes": [],
+	"lamp_modes": [		
+		"lnor",
+		"eco"],
 	"3d_modes": [],
 	"poweron_time": 100,
 	"poweroff_time": 100

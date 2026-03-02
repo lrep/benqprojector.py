@@ -1,7 +1,14 @@
 {
 	"commands": [
+		"auto",
+		"autopower",
+		"baud",
 		"pow",
-		"sour"
+		"sour",
+		"blank",
+		"lammd",
+		"lampcustom",
+		"lampm",
 	],
 	"video_sources": [
 		"hdmi",
@@ -12,7 +19,12 @@
 	"picture_modes": [],
 	"color_temperatures": [],
 	"aspect_ratios": [],
-	"projector_positions": [],
+	"projector_positions": [
+		"ft",
+		"re",
+		"rc",
+		"fc"
+	],
 	"menu_positions": [],
 	"lamp_modes": [],
 	"3d_modes": [],
